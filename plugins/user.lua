@@ -8,5 +8,11 @@ return {
   --   config = function()
   --     require("lsp_signature").setup()
   --   end,
-  -- },
+  -- }
+  {
+    "gbprod/nord.nvim",
+    config = function()
+      require("nord").setup()
+    end,
+  },
 }

@@ -11,10 +11,16 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(
+            bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
+    ["<leader>mc"] = { "<cmd>lua MiniMap.close()<cr>", desc = "Close MiniMap" },
+    ["<leader>mo"] = { "<cmd>lua MiniMap.open()<cr>", desc = "Open MiniMap" },
+    ["<leader>mf"] = { "<cmd>lua MiniMap.toggle_focus()<cr>", desc = "Toggle focus of MiniMap" },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
