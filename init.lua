@@ -65,6 +65,10 @@ return {
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     -- Set up custom filetypes
+    vim.o.termguicolors = true
+    vim.cmd 'colorscheme nord'
+    vim.o.exrc = true
+    vim.o.secure = true
     -- vim.filetype.add {
     --   extension = {
     --     foo = "fooscript",

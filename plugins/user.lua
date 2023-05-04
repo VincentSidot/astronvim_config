@@ -12,6 +12,7 @@ return {
   {
     "gbprod/nord.nvim",
     config = function()
+      vim.o.termguicolors = true
       require("nord").setup()
     end,
   },
