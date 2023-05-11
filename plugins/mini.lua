@@ -12,7 +12,6 @@ return {
           }
         }
       )
-      mini.open()
     end,
   },
 }
