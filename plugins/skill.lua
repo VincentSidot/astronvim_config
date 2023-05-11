@@ -9,5 +9,12 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- }
-  "VincentSidot/vim-skill",
+  {
+    "VincentSidot/vim-skill",
+    lazy = true,
+    -- load only when a file with a supported extension is opened
+    autocmd = {
+      ft_ext = { "il", "ils" }
+    }
+  },
 }
