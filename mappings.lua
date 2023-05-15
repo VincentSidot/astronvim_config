@@ -30,6 +30,10 @@ return {
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
+  v = {
+    ["<leader>y"] = { '"*y', desc = "Copy to clipboard" },
+    ["<leader>p"] = { '"*p', desc = "Paste from clipboard" },
+  },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
