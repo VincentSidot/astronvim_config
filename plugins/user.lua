@@ -9,13 +9,7 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- }
-  {
-    "gbprod/nord.nvim",
-    config = function()
-      vim.o.termguicolors = true
-      require("nord").setup()
-    end,
-  },
+
   {
     "xiyaowong/transparent.nvim",
     lazy = false,

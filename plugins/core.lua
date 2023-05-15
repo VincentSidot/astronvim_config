@@ -3,23 +3,78 @@ return {
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+      math.randomseed(os.time())
+
+
+      -- customize the dashboard header --
+      opts.section.header.val = require('user.utils.headers').random
+      -- add custom buttons --
+      opts.section.buttons.val = {
+        opts.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
+        opts.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+        opts.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+        opts.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+        opts.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+        opts.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+        opts.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+        opts.button("m", " " .. " Mason", ":Mason<CR>"),
+        opts.button("q", " " .. " Quit", ":qa<CR>"),
       }
+
+      for _, button in ipairs(opts.section.buttons.val) do
+        button.opts.hl = "AlphaButtons"
+        button.opts.hl_shortcut = "AlphaShortcut"
+      end
+      opts.section.header.opts.hl = "AlphaHeader"
+      opts.section.buttons.opts.hl = "AlphaButtons"
+      opts.section.footer.opts.hl = "AlphaFooter"
+      opts.opts.layout[1].val = 8
+
       return opts
     end,
+    config = function(_, opts)
+      if vim.o.filetype == "lazy" then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd("User", {
+          pattern = "AlphaReady",
+          callback = function()
+            require("lazy").show()
+          end,
+        })
+      end
+
+      require("alpha").setup(opts.opts)
+
+      function footer()
+        local stats = require('lazy').stats()
+        local v = vim.version()
+        local datetime = os.date " %d-%m-%Y   %H:%M:%S"
+        return string.format(" %s plugins loaded in %s ms\n v%s.%s.%s  %s", stats.count,
+          math.floor(stats.startuptime * 100 + 0.5) / 100, v.major, v.minor, v.patch, datetime)
+      end
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          opts.section.footer.val = footer()
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
+    end,
   },
+  {
+    "folke/drop.nvim",
+    event = "VimEnter",
+    config = function()
+      require("drop").setup({
+        theme = "snow",
+        interval = 75,
+        max = 40,
+        screensaver = 1000 * 60 * 2,
+        filetype = { "dashboard", "alpha", "starter" },
+      })
+    end,
+  }
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
