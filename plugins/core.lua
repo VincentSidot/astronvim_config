@@ -70,7 +70,7 @@ return {
         theme = "snow",
         interval = 75,
         max = 40,
-        screensaver = 1000 * 60 * 2,
+        screensaver = 1000 * 60 * 10,
         filetype = { "dashboard", "alpha", "starter" },
       })
     end,

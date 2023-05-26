@@ -69,6 +69,24 @@ return {
     vim.cmd 'colorscheme nord'
     vim.o.exrc = true
     vim.o.secure = true
+
+
+    -- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    --   pattern = { "*.ils", "*.il" },
+    --   callback = function()
+    --     vim.bo.filetype = "skill"
+    --     vim.bo.syntax = "skill"
+    --     vim.lsp.start({
+    --       name = "skill-lsp-server",
+    --       cmd_cwd = "/Users/sidotv/Documents/dev_perso/skill-lsp-server/src/",
+    --       cmd = {
+    --         "../.venv/bin/python",
+    --         "skill_lsp_server.py"
+    --       },
+    --       root_dir = "/Users/sidotv/Documents/dev_perso/test_skill/",
+    --     })
+    --   end,
+    -- })
     -- vim.filetype.add {
     --   extension = {
     --     foo = "fooscript",

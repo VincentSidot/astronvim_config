@@ -1,4 +1,4 @@
--- set vim options here (vim.<first_key>.<second_key> = value)
+-- shttps://aniah.atlassian.net/wiki/spaces/AAID/pages/25034753/Aniah+AE+Cad+toolset vim options here (vim.<first_key>.<second_key> = value)
 return {
   opt = {
     -- set to true or false etc.
