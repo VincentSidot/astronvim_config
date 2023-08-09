@@ -17,7 +17,7 @@ return {
     },
   },
   -- Set colorscheme to use
-  colorscheme = "nord",
+  colorscheme = "tokyonight-moon",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
@@ -66,7 +66,6 @@ return {
   polish = function()
     -- Set up custom filetypes
     vim.o.termguicolors = true
-    vim.cmd 'colorscheme nord'
     vim.o.exrc = true
     vim.o.secure = true
 
